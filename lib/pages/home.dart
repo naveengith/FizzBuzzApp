@@ -1,5 +1,4 @@
 import 'package:fizzbizzapp/pages/fizzbuzzlist.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,14 +11,13 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: const MyHomeForm(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Fizz Buzz"),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: const MyHomeForm(),
     );
   }
 }
@@ -39,7 +37,6 @@ class MyHomeFormState extends State<MyHomeForm> {
   bool submit = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     targetValueController.addListener(() {
       setState(() {
@@ -77,7 +74,7 @@ class MyHomeFormState extends State<MyHomeForm> {
                   hintText: 'Enter valid Input  as 1234'),
             ),
           ),
-          Container(
+          SizedBox(
             height: 50,
             width: 250,
             child: ElevatedButton(
@@ -96,7 +93,6 @@ class MyHomeFormState extends State<MyHomeForm> {
   submitData() {
     String input = targetValueController.text;
     int value = int.parse(input);
-    print(value);
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("Processing Data")));

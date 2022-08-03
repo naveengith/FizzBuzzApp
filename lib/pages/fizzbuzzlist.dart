@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 
 final List<String> entries = [];
 
-class FizzBuzzList extends StatelessWidget {
+class FizzBuzzList extends StatefulWidget {
   const FizzBuzzList({Key? key, required this.inputNumber}) : super(key: key);
 
   final int inputNumber;
 
   @override
-  Widget build(BuildContext context) {
+  StateFizzBuzzList createState() => StateFizzBuzzList();
+}
+
+class StateFizzBuzzList extends State<FizzBuzzList> {
+  @override
+  void initState() {
+    super.initState();
     entries.clear();
-    getListData(inputNumber);
+    getListData(widget.inputNumber);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Fizz Buzz List"),
