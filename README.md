@@ -1,4 +1,4 @@
-# fizzbizzapp
+# fizzbuzzapp
 
 A new Flutter project.
 
