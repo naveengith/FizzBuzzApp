@@ -94,12 +94,28 @@ class MyHomeFormState extends State<MyHomeForm> {
     String input = targetValueController.text;
     int value = int.parse(input);
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Processing Data")));
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => FizzBuzzList(inputNumber: value)));
+      if (value <= 1000) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FizzBuzzList(inputNumber: value)));
+      } else {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text("Invalid Number Detected !"),
+                content: const Text("Please enter Number less than 1000 "),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Ok'),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              );
+            });
+      }
     }
   }
 }
